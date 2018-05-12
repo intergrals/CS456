@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+
+\setlist{itemsep=2pt}
+
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\underline{\large \bf Lecture 1}\\
+\noindent
+{\hfill 01/05/2018 [T]}
+\end{center}
+
+\underline{\bf Chapter 1.1 - What is the Internet}\\
+\vspace{-4mm}
+
+{\it The internet is the world's largest network system.}\\
+
+\underline{Technical Viewpoint}
+
+\begin{itemize}
+\item A {\bf host} or {\bf end system} is a device, usually a computer, in a network which offers {\it information}, {\it services}, or {\it applications} to users.
+\item Communication is done through {\it links} such as: {\it fiber, copper, radio, satellite...}
+\item {\bf Bandwidth} is the transmission rate across the link.
+\item Data is transmitted via {\bf packet switching}, where they are forwarded in chunks called {\it packets}.
+\begin{itemize}
+\item Data is received by {\bf network nodes}, which are usually {\it routers} or {\it switches}.
+\end{itemize}
+
+\item {\bf Internet}: A "network of networks."
+\begin{itemize}
+\item Interconnected ISPs (Internet Service Providers).
+\end{itemize}
+\item {\bf Protocols} control {\it sending} and {\it receiving} of messages.
+\begin{itemize}
+\item {\bf Ex.} {\it TCP, IP, HTTP, Skype, 802.11}
+\end{itemize}
+\item The internet has {\it standards}:
+\begin{itemize}
+\item {\it Request for Comments} ({\bf RCF}): A publication from the {\it Internet Enginering Task Force} ({\bf IETF}) which describes behaviours and methods for making the Internet and connected systems work.
+\end{itemize}
+\end{itemize}
+
+\underline{Service Viewpoint}
+
+\begin{itemize}
+\item The internet is an infrastructure that provides {\it services} to applications.
+\begin{itemize}
+\item {\bf Ex.} {\it Web, VoIP, email, games...}
+\end{itemize}
+
+\newpage
+
+\item It provides {\it programming interfaces} to apps.
+\begin{itemize}
+\item Uses {\it hooks}, which allow the sending and receiving of application programs to "connect" to the internet.
+\end{itemize}
+\item Must use a {\bf socket interface}: A set of rules that programs must abide by to deliver and receive data.
+\end{itemize}
+
+\underline{What is a Protocol}
+
+\begin{itemize}
+\item Human Protocols:
+\begin{itemize}
+\item Questions (ex. "What is the time?")
+\item Introductions
+\end{itemize}
+\item Network Protocols:
+\begin{itemize}
+\item Uses machines rather than humans
+\item Communication activity in the Internet is governed by protocols.
+\end{itemize}
+\end{itemize}
+
+
+\end{document}
