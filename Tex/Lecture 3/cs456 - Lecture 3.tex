@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+
+\usepackage{amsmath}
+
+\setlist{itemsep=2pt}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\underline{\large \bf Lecture 3}\\
+\noindent
+{\hfill 08/05/2018 [T]}
+\end{center}
+
+\underline{\bf Chapter 1.3 - Network Core}\\
+\vspace{-4mm}
+
+{\it Packet switching, circuit switching, and network structure}\\
+
+\underline{What is the Network Core}\\
+\vspace{-4mm}
+
+{\it A "mesh" of interconnected routers.}
+
+\begin{itemize}
+\item {\bf Packet switching} is when data packets are forwarded from one router to another across a path to the destination.
+\item Packets are broken in to {\it L} bits and transmitted with transmission rate {\it R} (also known as {\it link capacity} or {\it link bandwidth}).
+\item Thus, $\text{packet transmission delay} = \text{time to transmit L-bit packet into link} = \frac{L (bits)}{R(bits/sec)}$.
+\item i.e. It takes L/R seconds to transmit an L-bit packet into a link at R bps.
+\item {\bf Store and forward} means that the {\it entire packet must arrive} at the router before it can be forwarded to the next link.
+\item If {\it arrival rate exceeds transmission rate}, then packets will wait in a {\it queue} to be transmitted.
+\item That means packets can be dropped (lost) if memory is full.
+\item {\bf Routing} determines the route taken by packets to get from the source to destination.
+\item {\bf Forwarding} moves packets from a router's input to the appropriate router output.
+\item {\bf Circuit switching} is when network nodes {\it reserve} circuits through the network before sharing packets.
+\item Packet switching is simpler (requires less setup) and allows multiple users to use the network, but it is possible for data to be lost, so it is less reliable. There is still no solution found to prevent possible data lost from packet switching.
+\end{itemize}
+
+\underline{Internet Structure}\\
+\vspace{-4mm}
+
+{\it Network of networks}
+
+\begin{itemize}
+\item 
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
