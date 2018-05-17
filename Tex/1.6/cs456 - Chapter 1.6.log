@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  17 MAY 2018 00:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  17 MAY 2018 00:20
 entering extended mode
 **"./cs456 - Chapter 1.6.tex"
 ("cs456 - Chapter 1.6.tex"
@@ -428,8 +428,7 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
-)
-No file "cs456 - Chapter 1.6".aux.
+) ("cs456 - Chapter 1.6.aux")
 \openout1 = `"cs456 - Chapter 1.6.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -445,6 +444,7 @@ LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 13.
+
 ("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -456,8 +456,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 {C:/Users/Leo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 ("cs456 - Chapter 1.6.aux") ) 
 Here is how much of TeX's memory you used:
- 1871 strings out of 493333
- 23412 string characters out of 3131012
+ 1873 strings out of 493333
+ 23458 string characters out of 3131012
  82490 words of memory out of 3000000
  5424 multiletter control sequences out of 15000+200000
  7812 words of font info for 21 fonts, out of 3000000 for 9000
@@ -467,7 +467,7 @@ Here is how much of TeX's memory you used:
 nts/enc/dvips/base/8r.enc}<C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/urw/times/utmb8a.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/urw/times/utmr8a.pfb>
-Output written on "cs456 - Chapter 1.6.pdf" (1 page, 24690 bytes).
+Output written on "cs456 - Chapter 1.6.pdf" (1 page, 25455 bytes).
 PDF statistics:
  15 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
