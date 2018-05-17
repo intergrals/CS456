@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  13 MAY 2018 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  16 MAY 2018 21:54
 entering extended mode
-**"./cs456 - Lecture 3.tex"
-("cs456 - Lecture 3.tex"
+**"./cs456 - Chapter 1.4.tex"
+("cs456 - Chapter 1.4.tex"
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -428,8 +428,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
 \mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
-) ("cs456 - Lecture 3.aux")
-\openout1 = `"cs456 - Lecture 3.aux"'.
+) ("cs456 - Chapter 1.4.aux")
+\openout1 = `"cs456 - Chapter 1.4.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
@@ -450,42 +450,43 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 23.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 31.
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 39.
 ("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 31.
+
+Overfull \hbox (9.75137pt too wide) in paragraph at lines 59--60
+[]\OT1/ptm/m/n/10 The bot-tle-neck link can be found by look-ing for the link t
+hat is at ca-pac-ity even though a link fur-ther down/upstream
+ []
 
 [1
 
 {C:/Users/Leo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("cs456 - Lecture 3.aux") ) 
+("cs456 - Chapter 1.4.aux") ) 
 Here is how much of TeX's memory you used:
  1902 strings out of 493333
- 23909 string characters out of 3131012
- 86490 words of memory out of 3000000
+ 23927 string characters out of 3131012
+ 87490 words of memory out of 3000000
  5447 multiletter control sequences out of 15000+200000
- 12136 words of font info for 27 fonts, out of 3000000 for 9000
+ 11122 words of font info for 25 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,4n,23p,294b,190s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/font
-s/enc/dvips/base/8r.enc}<C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Leo/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Leo/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Leo/A
-ppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Leo
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/L
-eo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "cs456 - Lecture 3.pdf" (1 page, 73998 bytes).
+ 27i,4n,23p,224b,221s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/enc/dvips/base/8r.enc}<C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Leo/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Leo/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/L
+eo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users
+/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Use
+rs/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "cs456 - Chapter 1.4.pdf" (1 page, 77959 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

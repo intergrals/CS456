@@ -20,15 +20,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{center}
-\underline{\large \bf Lecture 3}\\
+\underline{\large \bf Chapter 1.3 - Network Core}\\
+
+{\it Packet switching, circuit switching, and network structure}\\
+
 \noindent
 {\hfill 08/05/2018 [T]}
 \end{center}
-
-\underline{\bf Chapter 1.3 - Network Core}\\
-\vspace{-4mm}
-
-{\it Packet switching, circuit switching, and network structure}\\
 
 \underline{What is the Network Core}\\
 \vspace{-4mm}
@@ -55,7 +53,19 @@
 {\it Network of networks}
 
 \begin{itemize}
-\item 
+\item End systems connect to the internet via {\it access ISPs} (Internet Service Providers).
+\item Access ISPs must be {\it interconnected} so that any two hosts can exchange packets.
+\item It is very difficult to connect all ISPs together because there are so many of them (millions).
+\item Options:
+\begin{itemize}
+\item Connect every ISP to every other ISP: $O(N^2)$ connections.
+\item Connect ISPs to one global ISP. There will be competition for which ISP is the global one.
+\end{itemize}
+\item Network structure on slide 1-40:
+\begin{itemize}
+\item {\bf Tier 1 Commercial ISPs} are at the {\it top} ({\it ex. Level 3, Sprint, AT\&T}). They usually have {\it national} or {\it international} coverage.
+\item {\bf Content Provider Networks} are also at the {\it top}. They connect data centers to the internet ({\it ex. Google}).
+\end{itemize}
 \end{itemize}
 
 

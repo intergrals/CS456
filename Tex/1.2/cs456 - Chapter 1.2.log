@@ -1,13 +1,13 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  8 MAY 2018 15:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  16 MAY 2018 20:25
 entering extended mode
-**"./CS456 - Lecture 1.tex"
-("CS456 - Lecture 1.tex"
+**"./cs456 - Chapter 1.2.tex"
+("cs456 - Chapter 1.2.tex"
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
 ("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size12.clo"
-File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -372,69 +372,68 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@toks=\toks17
 \enit@inbox=\box26
 \enitdp@description=\count88
-) ("CS456 - Lecture 1.aux")
-\openout1 = `"CS456 - Lecture 1.aux"'.
+) ("cs456 - Chapter 1.2.aux")
+\openout1 = `"cs456 - Chapter 1.2.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 11.
 
 ("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 22.
+(Font)              <7> on input line 21.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 22.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 22.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 22.
+(Font)              <5> on input line 21.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 32.
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 35.
 ("C:\Users\Leo\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+
+ []
 
 [1
 
 {C:/Users/Leo/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-("CS456 - Lecture 1.aux") ) 
+("cs456 - Chapter 1.2.aux") ) 
 Here is how much of TeX's memory you used:
- 1315 strings out of 493333
- 17067 string characters out of 3131012
- 77126 words of memory out of 3000000
- 4868 multiletter control sequences out of 15000+200000
- 13404 words of font info for 32 fonts, out of 3000000 for 9000
+ 1300 strings out of 493333
+ 16943 string characters out of 3131012
+ 78093 words of memory out of 3000000
+ 4862 multiletter control sequences out of 15000+200000
+ 10668 words of font info for 23 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,4n,23p,261b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/font
-s/enc/dvips/base/8r.enc}<C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Leo/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "CS456 - Lecture 1.pdf" (2 pages, 54030 bytes).
+ 23i,4n,23p,231b,224s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/enc/dvips/base/8r.enc}<C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Leo/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Leo/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Leo/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "cs456 - Chapter 1.2.pdf" (2 pages, 64080 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
+ 30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
