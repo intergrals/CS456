@@ -1,0 +1,222 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Section 2.\arabic{section}}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Principles of Network Applications}
+\noindent
+{\hfill 22/06/2018 [T]}
+\end{center}
+
+\subsection{Example Network Apps}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item e-mail
+\item web
+\item text messaging
+\item remote login
+\item P2P file sharing
+\item multi-user network games
+\columnbreak
+\item streaming stored video (YouTube, Netflix...)
+\item voice over IP (Skype)
+\item real-time video conferencing
+\item social networking
+\item searching
+\item ...
+\end{itemize}
+\end{multicols}
+
+\subsection{Creating a Network App}
+
+\begin{itemize}
+\item To create a network app, it must:
+\begin{itemize}
+\item Run on {\it different} end systems.
+\item Communicate over a network.
+\item {\bf Ex.} A web server software communicates with browser software.
+\end{itemize}
+\item There is no need to write software for {\it network-core devices} because:
+\begin{itemize}
+\item Network core devices do not run user applications.
+\item Applications on end systems allow for rapid app development and propoation.
+\end{itemize}
+\item There are {\it two} possible structure of applications:
+\begin{itemize}
+\item Client-server
+\item Peer-to-peer (P2P)
+\end{itemize}
+\end{itemize}
+
+\subsection{Client-server Architecture}
+
+\begin{itemize}
+\item {\bf Servers}:
+\begin{itemize}
+\item Are an always-on host.
+\item Have a permanent IP address.
+\item Have data centers for scaling.
+\end{itemize}
+\item {\bf Clients}:
+\begin{itemize}
+\item Communicate with servers.
+\item May or may not be intermittently connected.
+\item Could have dynamic IP addresses.
+\item Do not directly communicate with each other.
+\end{itemize}
+\end{itemize}
+
+\clearpage
+
+\subsection{P2P Architecture}
+
+\begin{itemize}
+\item {\it Not} an always-on server.
+\item Random end systems directly communicate.
+\item Peers {\it request} service from other peers and {\it provide} service to other peers in return.
+\item Peers are not always connected and change IP addresses. Thus management is very complex.
+\end{itemize}
+
+\subsection{Processes Communicating}
+
+\begin{itemize}
+\item {\bf Process} refers to a program running within a host.
+\item Within the {\it same host}, two processes communicate using inter-process communication.
+\item Processes in different hosts communicate by exchanging messages.
+\item In the client/server model, the client process initiates communication and the server process waits to be contacted.
+\item {\bf Note:} Applications with P2P architectures have both client and server processes.
+\end{itemize}
+
+\subsection{Sockets}
+
+\begin{itemize}
+\item Processes send or receive messages to/from their sockets.
+\item A {\bf socket} can be compared to a door:
+\begin{itemize}
+\item The sending process "shoves" a message out the door.
+\item It relies on the {\it transport infrastructure} on the other side of the door to deliver the message to the socket at the receiving process.
+\end{itemize}
+\end{itemize}
+
+\subsection{Addressing Processes}
+
+\begin{itemize}
+\item To receive messages, processes must have an {\it identifier}.
+\item A host device has a unique 32-bit IP address
+\item The host's IP address is not enough to identify the process because multiple processes can run on the same host.
+\item Thus, the {\bf identifier} includes both the {\it IP address} and the {it port numbers} associated with the process on the host.
+\item Example port numbers:
+\begin{itemize}
+\item HTTP server: 80
+\item mail server: 25
+\end{itemize}
+\item {\bf Ex.} To send HTTP messages to the gaia.cs.umass.edu web server, use:
+\begin{itemize}
+\item IP address: 128.119.245.12
+\item Port number: 80
+\end{itemize}
+\end{itemize}
+
+\clearpage
+
+\subsection{App-layer Protocol Defines}
+
+\begin{itemize}
+\item Types of messages exchanged (request, response...)
+\item Message syntax (message fields)
+\item Message semantics (Meaning of info in fields)
+\item Rules for when and how process send/respond to messages.
+\item Open protocols (HTTP, SMTP...)
+\item Proprietary protocols (Skype..)
+\end{itemize}
+
+\subsection{Transport Services Needed by an App}
+
+\begin{itemize}
+\item Data Integrity
+\begin{itemize}
+\item Some apps (such as file transfers or web transactions) require 100\% {\it reliable} data transfers.
+\item Other apps, like audio, can tolerate a bit of loss.
+\end{itemize}
+\item Timing
+\begin{itemize}
+\item Some apps (Internet, telephone, games...) are only {\it effective with low delay}.
+\end{itemize}
+\item Throughput
+\begin{itemize}
+\item Some apps (such as multimedia) require only a minimal amount of throughput to work effectively.
+\item Some apps ("elastic apps") will use whatever throughput they can get.
+\end{itemize}
+\item Security
+\begin{itemize}
+\item Encryption, data integrity, etc. is important to ensure data does not get in the wrong hands.
+\end{itemize}
+\item Note: The table on slide 2-14 shows the importance of each service for different apps.
+\end{itemize}
+
+\subsection{Internet Transport Protocol Services}
+
+\begin{multicols}{2}
+\underline{\bf TCP Service:}
+\begin{itemize}
+\item {\it Reliable transport} between sending and receiving processes.
+\item {\it Flow control} so the sender does not overwhelm the receiver.
+\item {\it Congestion control} throttles the sender when the network is overloaded (so data is not lost).
+\item {\bf Does not provide}: Timing, minimum throughput guarantee, or security.
+\item {\it Connection oriented}, so setup is required between client and server processes.
+\end{itemize}
+
+\columnbreak
+
+\underline{\bf UDP Service:}
+\begin{itemize}
+\item {\it Unreliable data transfer} between sending and receiving processes.
+\item {\bf Does not provide}: Reliability, flow control, congestion control, timing, throughput guarantee, security, or connection setup.
+\end{itemize}
+\end{multicols}
+{\bf Note}: The table on slide 2-16 shows whether TCP or UDP is preferred in different apps.
+
+\clearpage
+
+\subsection{Securing TCP}
+
+\begin{itemize}
+\item {\bf TCP \& UDP} have no encruption. Cleartext passwords sent into a socket {\it traverse in cleartext}.
+\item {\bf SSL} provides encrypted TCP connection. SSL has data integrity and end-point authentication.
+\item SSL is at the app layer. Apps use SSL libraries that communicate with TCP.
+\item The SSL socket API encrypts passwords before sending them into the socket so they {\it traverse encrypted}.
+\end{itemize}
+
+
+
+
+
+
+
+\end{document}
