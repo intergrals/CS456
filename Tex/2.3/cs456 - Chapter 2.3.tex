@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 2.\arabic{section}}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{2.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\setcounter{section}{2}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Electronic Mail}
+\vspace{-4mm}
+{\it SMTP, POP3, IMAP}\\
+\noindent
+{\hfill 31/06/2018 [T]}
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item Electronic mail has 3 major components:
+\begin{itemize}
+\item User agents
+\item Mail servers
+\item Simple mail transfer protocol: SMTP
+\end{itemize}
+\end{itemize}
+
+\subsubsection{User Agent}
+
+\begin{itemize}
+\item Also known as {\it "mail reader"}.
+\item Used for {\it composing, editing, and reading mail messages}.
+\item {\bf Ex.} Outlook, thunderbird, iPhone mail client...
+\item Incoming and outgoing messages are stored on the server.
+\end{itemize}
+
+\subsubsection{Mail Servers}
+
+\begin{itemize}
+\item The {\bf mail server} is the {\it mailbox} contains incoming messages for the user.
+\item It contains a {\bf message queue} of outgoing messages that are ready to be sent.
+\item {\it SMTP protocols} between mail servers in order to send email messages. The client sends mail servers while the server receives it.
+\end{itemize}
+
+\subsubsection{SMTP}
+
+\begin{itemize}
+\item TCP is used to reliably transfer email messages from client to server. {\bf Port 25} is used.
+\item A {\bf direct transfer} is when mail is transferred from the {\it sending server} to the {\it receiving server}.
+\item There are 3 phases of a transfer:
+\begin{itemize}
+\item Handshaking
+\item Transfer of messages
+\item Closure
+\end{itemize}
+\item Command and response interaction is similar to HTTP. Commands are in ASCII text, and the response consists of a {\it status code} and a {\it phrase}.
+\item The message (header and body) must be in 7-bit ASCII.
+\item SMTP uses persistent connections.
+\item SMTP servers use CRLF.CRLF to determine the end of a message.
+\end{itemize}
+
+\subsubsection{Example Scenarios}
+
+\begin{itemize}
+\item See slide 2-52 for an example scenario.
+\item See slide 2-53 for example SMTP interaction.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Mail Access Protocols}
+
+\begin{itemize}
+\item {\bf SMTP} Delivers mail to the receiver's server and stores it.
+\item There are several mail access protocols for mail retrieval from a server:
+\begin{itemize}
+\item {\bf POP}, or {\it Post Office Protocol}, where mail can be downloaded after authorization.
+\begin{itemize}
+\item POP3 is {\it stateless} across different sessions.
+\item {\bf Download and delete} mode ensures that mail {\it cannot be re-read} if the client is changed.
+\item {\bf Download and keep} mode keeps {\it copies} of messages across different clients. They will still exist in the mail server after download.
+\end{itemize}
+\item {\bf IMAP}, or {\it Internet Mail Access Protocol}. It has more features, such as manipulating messages stored on the server.
+\begin{itemize}
+\item All messages are kept on the server.
+\item Users can organize messages in folders.
+\item The user state is kept across sessions (such as the names of folders, and mapping between message ID and folder name).
+\end{itemize}
+\item {\bf HTTP}. Messages can be viewed and modified on an internet browser. {\it gmail, Hotmail, and Yahoo! Mail} are examples.
+\end{itemize}
+\item See slide 2-58 for an example usage of POP3 protocol.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
