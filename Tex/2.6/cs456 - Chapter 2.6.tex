@@ -1,0 +1,121 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 2.\arabic{section}}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{2.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\setcounter{section}{5}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Video Streaming and Content Distribution Networks (CDNs)}
+\noindent
+{\hfill 07/06/2018 [Th]}
+\end{center}
+
+\subsection{Context}
+
+\begin{itemize}
+\item Video traffic is a major consumer of Internet bandwidth, with Netflix and YouTube taking up 37\% and 16\% of residential downstream traffic respectively.
+\item With over 1 billion YouTube users and 75 million Netflix users, there is a challenge in how to reach so many users.
+\item A single mega-video server would \emph{not} work because different users have \emph{different capabilities} (wired vs. mobile, bandwidth rich vs. bandwidth poor...). There are also other reasons which will be explained later on.
+\item The solution is to use \emph{distributed application-level infrastructure}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multimedia Video}
+
+\begin{itemize}
+\item A video consists of a sequence of images being displayed at a constant rate.
+\item A digital image is made up of an array of pixels, where each pixel is represented by bits.
+\item In practice, we use {\bf coding}: redundancy \emph{within} and \emph{between} images to decrease the number of bits used to encode an image.
+\item There are \emph{two} types of coding:
+\begin{itemize}
+\item {\bf Spacial} (within image)
+\begin{itemize}
+\item {\bf Ex.} Instead of sending N values of the same color, send only two values: color value and number of repeated values.
+\end{itemize}
+\item {\bf Temporal} (from one image to the next)
+\begin{itemize}
+\item {\bf Ex.} Instead of sending a complete frame, only send \emph{differences} from previous frame.
+\end{itemize}
+\end{itemize}
+\item {\bf CBR} (\emph{constant bit rate}) is when the video encoding rate is fixed.
+\item {\bf VBR} (\emph{variable bit rate}) is when the video encoding rate changes as the amount of spatial and temporal coding changes.
+\item {Ex.} {\it MPEG1 (CD-ROM) [1.5Mbps], MPEG2 (DVD) [3-6 Mbps], MPEG4 (often used in Internet) [<1 Mbps]}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Streaming Multimedia: DASH}
+
+\begin{itemize}
+\item Stands for {\bf Dynamic Adaptive Streaming over HTTP}
+\item The \emph{server} divides a video file into \emph{multiple chunks}, which are stored and encoded at different rates.
+\item A {\bf manifest file} provides URLs for different chunks.
+\item The \emph{client} periodically measures server-to-client bandwidth.
+\item Consulting manifest, the client requests one chunk at a time and chooses the \emph{maximum coding rate sustainable} given its \emph{current bandwidth}. Note that different coding rates can be chosen at different points in time.
+\item \emph{"Intelligence" at client} exists, where the client determines:
+\begin{itemize}
+\item \emph{When} to request chunks so that buffer starvation and overflow does not occur.
+\item \emph{What encoding rate} to request, where higher quality rates are chosen when more bandwidth is available.
+\item \emph{Where} to request chunks, so that it can request chunks from a URL server that's closer or has higher available bandwidth.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Challenge}
+\vspace{-3mm}
+\emph{How to stream content, selected from millions of videos, to millions of simultaneous users?}
+
+\subsubsection{Option 1}
+\begin{itemize}
+\item Use a single large "mega-server".
+\item This method is not very reliable because:
+\begin{itemize}
+\item There is a single point of failure.
+\item There is a single point of network congestion.
+\item Clients far away have long paths.
+\item Multiple copies of a video may be sent over an outgoing link.
+\item Simply put, \emph{it does not scale}.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Option 2}
+\begin{itemize}
+\item Store and serve multiple copies of videos at multiple geographically distributed sites (CDN)
+\item {\bf Enter deep}: Pushing CDN servers into various access networks so that they're closer to users.
+\item {\bf Bring home}: Smaller number (10s) of larger clusters in POPs near, but not within, access networks.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Closer Look}
+
+\begin{itemize}
+\item CDN stores copies of content at CDN nodes ({\bf ex.} Netflix stores copies of MadMen).
+\item Subscribers request content from the CDN. The request is either directed to a nearby copy, which retrieves the content, or it is directed to a different copy if the network path is congested.
+\item See example of steps of a video request on slide 2-96.
+\item See example of how Netflix works on slide 2-97.
+\end{itemize}
+
+\end{document}
