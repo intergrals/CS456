@@ -1,0 +1,110 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 2.\arabic{section}}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{2.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\setcounter{section}{4}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{P2P Applications}
+\noindent
+{\hfill 07/06/2018 [Th]}
+\end{center}
+
+\subsection{Pure P2P Architecture}
+
+\begin{itemize}
+\item There is no always-on server.
+\item End systems directly communicate with each other.
+\item Peers are \emph{intermittently} connected and changes IP addresses often.
+\item {\bf Examples}:
+\begin{itemize}
+\item File distribution (BitTorrent)
+\item Streaming (KanKan)
+\item VoIP (Skype)
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{File Distribution Time}
+
+\begin{itemize}
+\item How does P2P compare with client-server in terms of file distribution of a size $F$ file from one server to $N$ peers:
+\item Note that peer upload and download capacity is a \emph{limited resource}.
+\item Note: $u_s = $ server upload capacity.
+\item In the client-server architecture:
+\begin{itemize}
+\item Server transmission must sequentially send N file copies.
+\item The time to send one copy is $F/u_s$, so the time to send $N$ copies is $NF/u_s$.
+\item Client must download the file copies.
+\item If $d_{min}$ is the minimum client download rate, then the minimum client download time is $F/d_{min}$.
+\item Thus, the time to distribute file $F$ to $N$ clients using the {\bf client-server approach} is: $D_{c-s} \ge max\{NF/u_s,F/d_{min}\}$
+\end{itemize}
+\item In the P2P architecture:
+\begin{itemize}
+\item Server transmission must upload at least one copy, which has time $F/u_s$.
+\item Clients must each download the file copy, which has min download time $F/d_{min}$.
+\item Clients download a combined $NF$ bits, meaning the max upload rate... (?)
+\end{itemize}
+\item See example graph of client-server vs. P2P on slide 2-80.
+\item {\bf TODO: Finish notes}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
