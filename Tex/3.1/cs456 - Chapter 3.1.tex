@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 3\arabic{section}}
+\renewcommand{\thesubsection}{3.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Transport-Layer Services}
+\noindent
+{\hfill 12/06/2018 [T]}
+\end{center}
+
+\subsection{Transport Services and Protocols}
+
+\begin{itemize}
+\item They provide \emph{logical communication} between apps running on different hosts.
+\item {\bf Transport protocols} run in end systems:
+\begin{itemize}
+\item The {\bf send side} breaks application messages into \emph{segments} and passes them to the network layer.
+\item The {\bf receiver side} puts the segments back together into messages and passes the message to the app layer.
+\end{itemize}
+\item Multiple transport protocols are available to apps, including \emph{TCP and UDP} for transportation over the internet.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Transport vs. Network Layer}
+
+\begin{itemize}
+\item The {\bf network layer} is a logical communication between hosts.
+\item The {\bf transport layer} is a logical communication between processes.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
