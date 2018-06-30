@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  30 JUN 2018 13:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.1.9)  30 JUN 2018 13:23
 entering extended mode
 **"./cs456 - Chapter 3.1.tex"
 ("cs456 - Chapter 3.1.tex"
@@ -978,7 +978,7 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 85.
 Here is how much of TeX's memory you used:
  15460 strings out of 493333
  293249 string characters out of 3131012
- 358156 words of memory out of 3000000
+ 358157 words of memory out of 3000000
  18736 multiletter control sequences out of 15000+200000
  12801 words of font info for 26 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -989,7 +989,7 @@ msy10.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times
 /utmb8a.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/tim
 es/utmr8a.pfb><C:/Users/Leo/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on "cs456 - Chapter 3.1.pdf" (1 page, 45533 bytes).
+Output written on "cs456 - Chapter 3.1.pdf" (1 page, 45535 bytes).
 PDF statistics:
  44 PDF objects out of 1000 (max. 8388607)
  5 named destinations out of 1000 (max. 500000)
