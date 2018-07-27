@@ -1,0 +1,75 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 3.\arabic{section}}
+\renewcommand{\thesubsection}{3.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{6}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{TCP Congestion Control}
+\noindent
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item TCP's approach is to \emph{increase the sender's transmission rate} (window size) until loss occurs.
+\item {\bf Additive increase} is to increase \emph{cwnd} by 1 MSS every RTT until loss is detected.
+\item {\bf Multiplicative decrease} is to cut \emph{cwnd} by half after loss is detected.
+\end{itemize}
+
+\subsubsection{Details}
+\begin{itemize}
+\item The sender limits transmission such that $LastByteSent - LastByteAcked \le cwnd$.
+\item The TCP sending rate is roughly $\frac{cwnd}{RTT}bytes/sec$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP Slow Start}
+
+\begin{itemize}
+\item When a connection is established, increase output rate \emph{exponentially} until loss is detected.
+\item Commonly, cwnd starts at 1 MSS and \emph{doubles} every RTT (every time an ACK is received).
+\item Thus, the initial rate of transfer is low, but grows rapidly.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP: Detecting and Reacting to Loss}
+
+\begin{itemize}
+\item If loss is indicated by {\bf timeout}, set cwnd to 1 MSS and grow window exponentially until a threshold is reached. At that point, it will grow linearly. In other words, it repeats the \emph{TCP Slow Start} method until a threshold is reached.
+\item If loss is indicated by 3 duplicate ACKs being received, it indicates that the network is capable of delivering at least \emph{some} segments. Thus, cwnd is \emph{cut in half} and then grows linearly. This method is known as {\bf TCP RENO}.
+\item Assuming there is always data to send, the average window size is $\frac{3}{4}\frac{W}{RTT}bytes/sec$ where $W$ is the window size where loss occurs.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Explicit Congestion Notification (ECN)}
+
+\begin{itemize}
+\item If there is congestion in a router, the \emph{router will mark two bits} in the IP header (ToS field) to indicate congestion.
+\item The congestion indication will be sent to the receiver, who, after seeing the indication, will set an \emph{ECE bit} on the ACK back to sender to notify them of congestion.
+\end{itemize}
+
+\end{document}
