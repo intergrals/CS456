@@ -1,0 +1,169 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 4.\arabic{section}}
+\renewcommand{\thesubsection}{4.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{2}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{IP: Internet Protocol}
+\noindent
+\end{center}
+
+\subsection{IP Fragmentation and Reassembly}
+
+\begin{itemize}
+\item Network links have a \emph{max transfer size (MTU)}, the largest possible link-level frame that can be sent.
+\item Large IP datagrams are divided within the let such that one datagram becomes several. IP header bits are used to identify and order these fragments. They are only reassembled at the final destination.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{IP Addressing}
+
+\subsubsection{Introduction}
+\begin{itemize}
+\item An {\bf IP address} is a 32-bit identifier for host and router interface.
+\item The {\bf interface} is a connection between the host/router and a physical link. Routers tend to have multiple interfaces while a host only has one or two.
+\item The IP address is associated with each interface.
+\end{itemize}
+
+\subsubsection{Subnets}
+\begin{itemize}
+\item The IP address consists of:
+\begin{itemize}
+\item {\bf Subnet part} - high order bits
+\item {\bf Host part} - low order bits
+\end{itemize}
+\item Device interfaces with the same {\bf subnet} part of their IP address can physically reach each other without an intervening router.
+\end{itemize}
+
+\subsubsection{Classless InterDomain Routing (CIDR)}
+\begin{itemize}
+\item The subnet portion of an address has arbitrary length.
+\item In the address with format: $a.b.c.d/x$, $x$ is the number of bits in the subnet portion of an address.
+\end{itemize}
+
+\subsubsection{How to get an IP Address}
+\begin{itemize}
+\item The IP address is usually hard-coded by system admins in a file.
+\begin{itemize}
+\item In Windows, the IP address is in: control panel$\rightarrow$network$\rightarrow$configuration$\rightarrow$tcp/ip$\rightarrow$properties
+\item In UNIX, it is in /etc/rc.config
+\end{itemize}
+\item {\bf Dynamic Host Configuration Protocol (DHCP)} is used to dynamically get the address from an as server.
+\item The network gets the subnet part of an IP address from the ISP. The ISP allocates a portion of its address space for the network.
+\item The ISP can get a block of addresses from {\emph Internet Corporation for Assigned Names and Numbers (ICANN)}. ICANN is responsible for allocating addresses, managing DNS, assigning domain names, and resolving disputes.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dynamic Host Configuration Protocol (DHCP)}
+\begin{itemize}
+\item The \emph{goal} is to allow hosts to dynamically obtain its IP address from a network server when it joins the network.
+\item The host can renew its lease on the address it's using, or it can reuse its address (only hold the address while connected).
+\item \item Overview:
+\begin{itemize}
+\item Host optionally broadcasts a \emph{"DHCP discover"} message.
+\item DHCP server optionally responds with a \emph{"DHCP offer"} message.
+\item Host requests an IP address by sending a \emph{"DHCP request"} message.
+\item DHCP server sends address using a \emph{"DHCP ack"} message.
+\end{itemize}
+\item DHCP can return more than just the allocated IP address. It can also return:
+\begin{itemize}
+\item The address of the first-hop router for client.
+\item The name and IP address of the DNS server.
+\item The network mask, which indicates the network vs. host portion of the address.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hierarchial Addressing}
+
+\begin{itemize}
+\item Hierarchial addressing allows efficient advertising of routing information. A visual can be seen on {\bf slide 4-42}.
+\item Some ISPs may use more specific routes to organizations, as shown on {\bf slide 4-43}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Network Address Translation (NAT)}
+
+\begin{itemize}
+\item All datagrams leaving local networks have the same source NAT IP address, but different source port numbers.
+\item A local network uses only one IP address, as seen from the outside word. A range of IP addresses is not needed from the ISP. One IP address can be used for all devices.
+\item The address of local devices can be changed without notifying the outside world.
+\item The ISP can be changed without changing the addresses of devices in the local network.
+\item Devices in side the local net are not explicitly addressable by the outside world. This is an extra security feature.
+\item A NAT router must:
+\begin{itemize}
+\item Replace (source IP address, port number) of every outgoing datagram to (NAT IP address, new port number).
+\item Remember every source (IP address, port number) to (NAT IP address, new port number) translation pair.
+\item Replace (NAT IP address, new port number) in destination fields of every incoming datagram with corresponding (source IP address, port number) stored in the NAT table.
+\end{itemize}
+\item See example process of NAT router on {\bf slide 4-48}.
+\item NAT is controversial because:
+\begin{itemize}
+\item Routers should only process up to layer 3.
+\item Address shortage should be solved by IPv6.
+\item Violates end-to-end argument, since NAT possibility must be taken into account by app designers.
+\item NAT traversial becomes more compicated if the client wants to connect to the server behind NAT.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{IPv6}
+
+\subsubsection{Motivation}
+\begin{itemize}
+\item 32-bit address space will soon be completely allocated.
+\item In addition, using a header format helps to speed up processing an forwarding, as well as helping to facilitate QoS.
+\end{itemize}
+
+\subsubsection{Datagram Format}
+\begin{itemize}
+\item {\bf Priority}: Identified among datagrams in flow.
+\item {\bf Flow label}: Identify datagrams in the same "flow".
+\item {\bf Next header}: Identify upper layer protocol for data.
+\end{itemize}
+
+\subsubsection{Changes from IPv4}
+\begin{itemize}
+\item {\bf Checksum} has been removed to reduce processing time at each hop.
+\item {\bf Options} are allowed, but are outside of the header. They are indicated by a "Next Header" field.
+\item {\bf ICMPv6}, a new version of ICMP, which supports new message types (ex. \emph{"Packet Too Big"}), and multicast group management functions.
+\end{itemize}
+
+\subsubsection{Transition from IPv4 to IPv6}
+\begin{itemize}
+\item Not all routers can be upgraded simultaneously. Thus, the network must learn to operate with mixed IPv4 and IPv6 routers.
+\item {\bf Tunneling} IPv6 datagrams can be carried as {\bf payload} in IPv4 datagram among IPv4 routers.
+\end{itemize}
+
+
+
+
+
+
+
+
+\end{document}
