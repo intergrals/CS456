@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 4.\arabic{section}}
+\renewcommand{\thesubsection}{4.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Overview of Network Layer}
+\noindent
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item The network layer transports segments from the sending to the receiving host.
+\item On the sending side, segments are encapsulated into datagrams.
+\item On the receiving side, the segments are delivered to the transport layer.
+\item The network layer protocols in \emph{every} host and router.
+\item The router examines header fields in every IP datagram that passes through it.
+\item The network layer has \emph{two key functions}:
+\begin{itemize}
+\item {\bf Forwarding}: Packets are moved from the router's input to its appropriate output.
+\item {\bf Routing}: Determines the route taken by packets from its source to destination.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Data Plane and Control Plane}
+
+\begin{itemize}
+\item The {\bf data plane}:
+\begin{itemize}
+\item Is a forwarding function.
+\item Is a local, per-router function.
+\item Determines how datagrams arriving to the router's input port is forwarded to its output port.
+\end{itemize}
+\item The {\bf control plane}:
+\begin{itemize}
+\item Is a network-wide logic.
+\item Determines how datagrams are routed between routers along end-end paths from the source to destination host.
+\item There are two approaches to the control plane:
+\begin{itemize}
+\item \emph{Traditional routing algorithms}, which is implemented in routers.
+\item \emph{Software-defined networking (SDN)}, which is implemented in remote servers instead.
+\end{itemize}
+\end{itemize}
+\item In a {\bf per-router control plane}, individual routing algorithms components in \emph{every router} interact in the control plane.
+\item In a {\bf logically centralized control plane}, a distinct controller interacts with local control agents (CAs). The controller is usually remotely located.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Network Service Model}
+
+\begin{itemize}
+\item Networks have certain \emph{service models} for transporting datagrams from a sender to the receiver.
+\item For example, the service could guarantee delivery (within a certain time) for individual datagrams.
+\item It could also guarantee in-order delivery, or delivery using the minimum required bandwidth, etc..
+\end{itemize}
+
+\end{document}
