@@ -1,0 +1,125 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 3.\arabic{section}}
+\renewcommand{\thesubsection}{3.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{4}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Connection-Oriented Transport (TCP)}
+\noindent
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item TCP is {\bf point-to-point}. There is \emph{one sender} and \emph{one receiver}.
+\item It is a reliable, in-order byte stream. There are no message boundaries.
+\item TCP utilizes \emph{pipelining} to control congestion by setting a window size for flow control.
+\item Data flows in the same connection both ways ({\bf full duplex data}).
+\item TCP is {\bf connection-oriented}. A \emph{handshaking procedure} must be done before data is exchanged.
+\item By utilizing \emph{flow control}, a the receiver will not be overwhelmed by packets sent by the sender.
+\item See a visual of the TCP segment structure on {\bf slide 3-58}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP Sequence Numbers and ACKs}
+
+\begin{itemize}
+\item {\bf Sequence numbers} represent the byte stream number of the first byte in a segment's data.
+\item The sequence number of the next byte is expected from the other side. Once it is received, an ACK is sent.
+\item TCP does not handle out-of-order segments in a specific way. It is up to the implementor to decide how it is handled.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP Round Trip Time and Timeout}
+
+\begin{itemize}
+\item The TCP timeout value should be set in proportion to the RTT.
+\item The estimated RTT is calculated by: $EstimatedRTT = (1 - \alpha)*EstimatedRTT + \alpha*SampleRTT$.
+\item Ideally, the timeout interval should be set to the $EstimatedRTT$ plus a \emph{safety margin}.
+\item Deviation from $EstimatedRTT$ can be calculated using $SampleRTT$ by:
+\begin{itemize}
+\item $DevRTT = (1-\beta)*DevRTT + \beta*|SampleRTT-EstimatedRTT|$
+\item Note that $\beta$ is typically set to 0.25.
+\end{itemize}
+\item Thus, the timeout interval should be: $TimeoutInterval = EstimatedRTT + 4*DevRTT$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP and Reliable Data Transfer}
+
+\begin{itemize}
+\item TCP creates rdt (reliable data transfer) service on top of an IP's unreliable service.
+\item It does this by \emph{pipelining segments, using cumulative acks, and a single retransmission timer}.
+\item Retransmissions are triggered by \emph{timeout events} and \emph{duplicate acks}.
+\item See example transmissions on {\bf slides 3-68 and 3-69}.
+\item See table showing actions in different scenarios on {\bf slide 3-70}.
+\end{itemize}
+
+\subsubsection{TCP Fast Retransmit}
+\begin{itemize}
+\item The time-out period is usually long, meaning if a packet is lost, there may be a long delay.
+\item If a sender receives many duplicate ACKs back-to-back (3), it is a sign that a segment may have been lost.
+\item When that happens, do not wait for a timeout, resend unacked segment with the smallest seq \# immediately.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP Flow Control}
+
+\begin{itemize}
+\item Since the receiver controls the sender, the sender shouldn't overflow the receiver's buffer by transmitting packets too quickly.
+\item The receiver places a {\bf rwnd} value in the TCP header of a \emph{receiver-to-header} segment to represent the amount of free buffer space they have.
+\item Typically, the receiver's buffer, {\bf RcvBuffer} is set to 4096 bytes, though different operating systems will adjust it according to their standards.
+\item The sender limits the amount of unacked data to the receiver's \emph{rwnd} value. Doing so guarantees that the receiver's buffer will not overflow.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP Connection Management}
+
+\subsubsection{Starting a Connection}
+\begin{itemize}
+\item Before exchanging data, the sender and receiver does a handshake.
+\item They should each agree to establish a connection by agreeing on the connection parameters.
+\item A {\bf 3-way handshake} is commonly used, where:
+\begin{itemize}
+\item The client sends an init packet to the server, which contains the \emph{init sequence number}, $x$, and a \emph{SYN message} (synchronize).
+\item The server receives the init packet, they choose another \emph{init sequence number}, $y$, and sends the init back to the client which contains $y$ as well as an emph{ACK for the SYN message, SYNACK}.
+\item The client receives the server's init, which indicates that the server is live. They send an \emph{ACK for the server's init}.
+\item Once the server receives that ACK, they know the client is live and the connection is established.
+\item See a visual example of this on {\bf slide 3-80}.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Closing a Connection}
+\begin{itemize}
+\item The client and server must each close their own respective side of the TCP connection.
+\item They send a TCP segment with a \emph{FIN bit = 1}. Once that is sent, they may no longer send messages, though they can still receive them.
+\item The other side responds with an \emph{ACK to the FIN}.
+\item This process is repeated for the other side. Then the connection is closed.
+\item See a visual example on {\bf slide 3-83}.
+\end{itemize}
+
+\end{document}

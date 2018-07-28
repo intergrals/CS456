@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 2.\arabic{section}}
+\renewcommand{\thesubsection}{2.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{2.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\setcounter{section}{6}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Socket Programming With UDP and TCP}
+\noindent
+{\hfill 07/06/2018 [Th]}
+\end{center}
+
+\subsection{Socket Programming}
+
+\begin{itemize}
+\item The {\bf goal} is to learn how to build client-server applications that communicate using sockets.
+\item {\bf Sockets} are doors between application processes and end-end-transport protocols.
+\item There are two socket types for transport services:
+\begin{itemize}
+\item {\bf UDP}, an unreliable datagram.
+\item {\bf TCP}, which is reliable and byte stream-oriented.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Socket Programming with UDP}
+
+\begin{itemize}
+\item There is \emph{no connection} between client and server. That means that there is no handshaking before sending data, the sender attaches IP destinaton address and port number to each packet, and the receiver extracts that info from the received packet.
+\item Note that data transmitted through UDP may be \emph{lost} or received \emph{out-of-order}.
+\item In the \emph{application viewpoint}, UDP provides an unreliable transfer of groups of bytes between client and server.
+\item See example of UDP client-server socket interaction on slides 2-102 to 2-104.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Socket Programming with TCP}
+
+\begin{itemize}
+\item The client must \emph{contact the server}, which must be running at the time of contact and have already created sockets which welcome client contact.
+\item Clients contact server by creating TCP sockets and specifying IP address and port number of server processes. When the client creates a socket, the client TCP establishes a connection with the server TCP.
+\item Once contacted by a client, the server TCP creates a new socket for the server process to communicate with that client. Servers can talk with multiple clients, where source port numbers are used to distinguish clients.
+\item In the \emph{application viewpoint}, TCP provides reliable, in-order byte-system transfers ("pipe") between client and server.
+\item See example of TCP client-server socket interaction on slides 2-106 to 2-108.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,146 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+
+\setlist{itemsep=2pt}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\underline{\large \bf Chapter 1.2 - Network Edge}\\
+
+{\it End systems, access networks, links.}\\
+
+\noindent
+{\hfill 03/05/2018 [Th]}
+\end{center}
+
+\underline{A Closer Look}
+
+\begin{itemize}
+\item A {\bf network edge} are the {\it hosts} (both clients and servers) and {\it servers} in a network.
+\item An {\bf access network} or {\bf physical media} connects edges in a network. The connection could be either {\it wired} or {\it wireless}.
+\item The {\bf network core} is a set of interconnected routers. It is essentially a {\it "network of networks"}. (?)
+\item The end systems are connected to edge routers via:
+\begin{itemize}
+\item residential access networks
+\item institutional networks (school, company, etc.)
+\item mobile access networks (cellular data)
+\end{itemize}
+\item {\bf Bandwidth} is the data transfer rate, in {\it bits per second}, of a network.
+\end{itemize}
+
+\bigskip
+
+\underline{\bf Access Networks}\\
+
+\underline{Digital Subscriber Line (DSL)}
+
+\begin{itemize}
+\item Connecting to the central office DSLAM using existing {\it telephone lines}.
+\item Voice and data are transmitted over the line at {\it different frequencies}. This technique is called {\bf Frequency Division Multiplexing} (FDM).
+\item Transmission rates are {\it asymmetric} with:
+\begin{itemize}
+\item $<$ 10 Mbps upstream transmission rate
+\item $<$ 25 Mbps downstream transmission rate
+\end{itemize}
+\end{itemize}
+
+\underline{Cable Network}
+
+\begin{itemize}
+\item Data is transmitted through the television {\it cable lines}, using {\bf hybrid fiber coax} (HFC), to the ISP router.
+\item FDM is, once again, used to transmit channels at different frequency bands.
+\item A home shares access network to a {\it cable headend}.
+\item Transmission rates are {\it asymmetric} with:
+\begin{itemize}
+\item $<$ 5 Mbps upstream transmission rate
+\item $<$ 30 mbps downstream transmission rate
+\end{itemize}
+\end{itemize}
+
+\newpage
+
+\underline{Enterprise Access Networks (Ethernet)}
+
+\begin{itemize}
+\item It is typically used in companies, universities, etc.
+\item End systems today usually connect into the Ethernet switch.
+\item Transmission rates could be: 10 Mbps, 100Mbps, 1Gbps, 10Gbps.
+\end{itemize}
+
+\underline{Wireless Access Networks}
+
+\begin{itemize}
+\item A shared access network that wirelessly connects end systems to the router using an {\bf access point}.
+\item {\bf Wireless LAN} connects devices {\it within a building} (~100 ft.) using 802.11 b/g/n WiFi.
+\begin{itemize}
+\item Transmission rates could be: 11, 54, or 450 Mbps.
+\end{itemize}
+\item {\bf Wide-area wireless access} is provided by {\it cellular operators} (10s km) using 3G, 4G: LTE.
+\begin{itemize}
+\item Transmission rates are between 1 - 10 Mbps.
+\end{itemize}
+\end{itemize}
+
+\underline{\bf Physical Media}
+
+\begin{itemize}
+\item A {\bf bit} propogates between transmitter/receiver pairs.
+\item A {\bf physical link} is a connection between the transmitter and the receiver.
+\item In {\bf guided media}, signals are propagated in solid media such as {\it copper, fiber, coax} in a guided path.
+\item In {\bf unguided media}, signals are propagated freely, such as with {\it radio}.
+\end{itemize}
+
+\underline{Cables}
+
+\begin{itemize}
+\item {\bf Twisted pair} cabling is a type of wiring where two insulated copper wires are {\it twisted together}.
+\begin{itemize}
+\item Category 5 cables transmit in 100Mbps, or 1Gbps Ethernet.
+\item Category 6 cables transmit in 10Gbps.
+\end{itemize}
+\item {\bf Coxial cables} are two concentric copper conductors. Data can be transmitted in both directions. It is {\bf broadband}, so the cable has {\it multiple channels}.
+\item {\bf Fiber optic cables} carry {\it light pulses} through glass fiber. Each pulse represents a bit. It is very high speed (10s-100s Gbps transmission rate), with a low error rate.
+\end{itemize}
+
+\underline{Radio}
+
+\begin{itemize}
+\item Signals are carried in {\it electromagnetic waves}, and could travel both ways.
+\item Transmission could be affected by the environment, such as from reflection, physical objects, or other electromagnetic waves.
+\item {\bf Terrestrial microwave} transmits in up to 45 Mbps channels.
+\item {\bf LAN} (ex. WiFi) transmits in up to 54 Mbps.
+\item {\bf Wide-area} (ex. cellular data) transmits at various speeds. 4G cellular transmits at ~10 Mbps.
+\item {\bf Satellite} has Kbps - 45 Mbps channels. Transmissions have a 270 ms end delay.
+\end{itemize}
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
