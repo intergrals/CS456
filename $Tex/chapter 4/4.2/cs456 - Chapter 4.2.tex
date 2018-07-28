@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 4.\arabic{section}}
+\renewcommand{\thesubsection}{4.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{1}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{What's Inside a Router}
+\noindent
+\end{center}
+
+\subsection{Overview of Router Architecture}
+
+\begin{itemize}
+\item A high-level view of a generic router architecture can be found on {\bf slide 4-11}.
+\item The center of the router contains a {\bf high-seed switching fabric}. It is connected bidirectionally to a {\bf routing processor}. The switching fabric is also connected to a number of {\bf router input ports} and {\bf router output ports} unidirectionally.
+\item The routing processor is in the \emph{control plane} while the switching fabric and the I/O ports are in the \emph{forwarding plane}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Input Port Functions}
+
+\begin{itemize}
+\item The input port contains mechanism for three functions. They are lined up sequentially.
+\item The {\bf line termination} is first. It receives bits. It is in the \emph{physical layer}.
+\item The {\bf link layer protocol} is up next. It is in the \emph{data link layer}.
+\item Finally is the lookup, forwarding, and queueing. Its goal is to complete input port processing at \emph{"line speed"}. If datagrams arrive faster than the forwarding rate into the switch fabric, the datagrams will be placed into a queue.
+\item After acquiring the output port from the header, one of two forwarding methods is used:
+\begin{itemize}
+\item {\bf Destination-based forwarding}: Forward based only on the destination IP address. This is the traditionally-used method.
+\item {\bf Generalize forwarding}: Forward based on any set of header field values.
+\end{itemize}
+\item A chart showing destination-based forwarding is shown on {\bf slide 4-14}.
+\item {\bf Longest prefix matching} is used when looking for a destination address. That is, use the \emph{longest} address prefix that matches the destination address. An example can be seen on {\bf slide 4-15}.
+\item Longest prefix matching is often done using \emph{ternary content addressable memories (TCAMs)}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Switching Fabrics}
+
+\begin{itemize}
+\item The {\bf switching fabric} transfers packets from the input buffer to an appropriate output buffer.
+\item {\bf Switching rate} refers to the rate at which packets can be transferred from inputs to outputs. It is often measured as a multiple of I/O line rate. For N inputs, a switching rate of N times line rate is desirable.
+\item A visual of different switching fabrics can be seen on {\bf slide 4-17}.
+\item If the fabric is slower than the input ports combined, then queueing may occur at the input queues, which may result in loss due to buffer overflow.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Output Ports}
+
+\begin{itemize}
+\item The output port uses the same three functions as the input port (also sequentially), but in reverse order.
+\item Buffering will happen if datagrams arrive from the fabric faster than the transmission rate, which could, once again, cause packet loss.
+\item {\bf Scheduling discipline} chooses among the queued datagrams the best one to use for transmission.
+\item The \emph{RFC 3439 rule of thumb} is that the average buffering is equal to "typical" RTT times link capacity C. With N flows, the buffering is equal to $\frac{RTT\cdot C}{\sqrt{N}}$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Scheduling Mechanisms}
+
+\begin{itemize}
+\item {\bf Scheduling} chooses the next packet to send on link.
+\item {\bf FIFO scheduling} sends packets in order of arrival to the queue.
+\item {\bf Priority scheduling} sends the queued packet with the highest priority. Priority can be determined by the class of the packet, which depends on marking and other header info (such as \emph{IP source/destination, port numbers, etc...}).
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
