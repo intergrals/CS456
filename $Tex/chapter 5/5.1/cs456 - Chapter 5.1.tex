@@ -1,0 +1,52 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Introduction}
+\noindent
+\end{center}
+
+\subsection{Network-Layer Functions}
+
+\begin{itemize}
+\item The network-layer has two functions:
+\begin{itemize}
+\item {\bf Forwarding}: to move packets from the router's input to the appropriate router output. It is in the \emph{data plane}.
+\item {\bf Routing}: to determine the route taken by packets from source to destination. It is in the \emph{control plane}.
+\end{itemize}
+\item There are two approaches to structuring the network control plane:
+\begin{itemize}
+\item Per-router control. This is the traditionally used method.
+\item Logically centralized control, which is software defined networking.
+\end{itemize}
+\item In the {\bf per-router control plane}, individual routing algorithm components in every router interact with each other in the control plane to compute forwarding tables.
+\item In the {\bf logically centralized control plane}, a distinct controller interacts with the local control agents in routers to compute forwarding tables. This controller is usually remotely located.
+\end{itemize}
+
+\end{document}
