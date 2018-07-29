@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 4.\arabic{section}}
+\renewcommand{\thesubsection}{4.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{3}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Generalized Forward and SDN}
+\noindent
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item Each router contains a \emph{flow table} that is computed and distributed by a \emph{logically centralized} routing controller.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{OpenFlow}
+
+\subsubsection{Data Plane Abstraction}
+\begin{itemize}
+\item {\bf Flow} is defined by header fields.
+\item {\bf Generalized forwarding} is a set of simple packet-handling rules:
+\begin{itemize}
+\item {\bf Pattern}: Match values in a packet's header fields.
+\item {\bf Actions}: Drop, forward, and modify \emph{matched packets} or send them to the controller.
+\item {\bf Priority}: Disambiguate overlapping patterns.
+\item {\bf Counters}: \#bytes and \#packets.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Flow Table Entries}
+\begin{itemize}
+\item OpenFlow has three sections for entries (more details on {\bf slide 4-62}):
+\begin{itemize}
+\item {\bf Rule}: A set of rules for the link layer, network layer, and transport layer (such as \emph{IP source, IP destination, etc...})
+\item {\bf Action}: What to do with attached packet that matches provided rules.
+\item {\bf Stats}: The packet itself and a byte counter.
+\end{itemize}
+\item Examples can be seen on {\bf slides 4-63 and 4-64}.
+\end{itemize}
+
+\subsubsection{OpenFlow Abstraction}
+\begin{itemize}
+\item {\bf match+action} unifies different kinds of devices.
+\item Router:
+\begin{itemize}
+\item \emph{Match}: Longest destination IP prefix.
+\item \emph{Action}: Forward out a link.
+\end{itemize}
+\item Switch:
+\begin{itemize}
+\item \emph{Match}: Destination MAC address.
+\item \emph{Action}: Forward or flood.
+\end{itemize}
+\item Firewall:
+\begin{itemize}
+\item \emph{Match}: IP addresses and TCP/UDP port numbers.
+\item \emph{Action}: Permit or deny.
+\end{itemize}
+\item NAT
+\begin{itemize}
+\item \emph{Match}: IP address and port.
+\item \emph{Action}: Rewrite address and port.
+\end{itemize}
+\end{itemize}
+
+\end{document}
