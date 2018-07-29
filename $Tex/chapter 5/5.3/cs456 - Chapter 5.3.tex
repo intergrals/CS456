@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\usepackage[]{algorithm2e}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{2}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Intra-AS Routing in the Internet}
+\noindent
+\end{center}
+
+\subsection{Making Routing Scalable}
+
+\begin{itemize}
+\item Routing isn't actually as easy as it appears to be. It was idealized up to now to focus on the actual routing processes, but there are many variables to consider.
+\item For example, we assumed that all routers are identical and that the network is "flat". This is not true in practice.
+\item With billions of destinations, it is impossible to store all destinations in routing tables, and exchanging routing tables to gather information would cause links to flood.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Internet's Approach to Scalable Routing}
+
+\subsubsection{Two Routing Types}
+\begin{itemize}
+\item The Internet's approach is to aggregate routers into regions known as \emph{"autonomous systems" (AS}, or domains.
+\item There are two types of AS routing:
+\begin{itemize}
+\item {\bf Intra-AS routing} routes among hosts and routers in the same AS (network). All routers in the AS must run the \emph{same intra-domain protocol}, but routers in different AS can run a \emph{different intra-domain routing protocol}. There are {\bf gateway routers} at the edge of the AS which has links to routers in other AS'es.
+\item {\bf Inter-AS routing} routes among AS'es. Gateways perform inter-domain routing as well as doing intra-domain routing.
+\item Forwarding tables are configured by both intra- and inter-AS routing algorithms. Intra-AS routing determine entries for destinations with an AS while inter-AS and intra-AS routing both determine entries for external destinations. A visual example can be seen on {\bf slide 5-33}.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Inter-AS Routing}
+\begin{itemize}
+\item If a router in an AS receives a datagram that's destination is outside of the AS, the router should forward the packet to a gateway router.
+\item It should choose the most effective one to reach the datagram's destination, so the AS must:
+\begin{itemize}
+\item Learn which destinations are reachable through neighbouring ASes.
+\item Send this reachability info to all routers in the AS.
+\end{itemize}
+\item This is a job for inter-AS routing.
+\end{itemize}
+
+\subsubsection{Intra-AS Routing}
+\begin{itemize}
+\item It is more commonly known as {\bf Interior Gateway Protocols (IGP)}.
+\item The most common intra-AS routing protocols are:
+\begin{itemize}
+\item {\bf RIP}: Routing Information Protocol.
+\item {\bf OSPF}: Open Shortest Path First. The IS-IS protocol is nearly the same as OSPF.
+\item {\bf IGRP}: Interior Gateway Routing Protocol.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{OSPF}
+
+\begin{itemize}
+\item This protocol uses a link-state algorithm, meaning there is a topology map at each node and the route computations are done using Dijkstra's algorithm.
+\item The router floods OSPF link-state advertisements to every other router in the entire AS. It is carried in OSPF messages directly over IP rather than using TCP or UDP. The message contains a link state for each link attached to the sending router.
+\item OSPF has several "advanced" features:
+\begin{itemize}
+\item \emph{Security}: All OSPF messages are authenticated to prevent intrusion.
+\item Multiple same-cost paths are allowed.
+\item Each link has multiple cost metrics for different types of service (ToS), such as setting satellite link cost to low for best effort ToS and high for real-time ToS.
+\item It has integrated \emph{uni-} and \emph{multi-cast} support.
+\item Large domains could use \emph{hierarchial} OSPF. See example on {\bf slide 5-38}.
+\end{itemize}
+\item In a {\bf hierarchial OSPF}:
+\begin{itemize}
+\item A \emph{two-level hierarchy} has a local area and a backbone. Link-states advertise only in the area, and each node has a detailed area topology - though they only know the shortest path to networks in other areas.
+\item {\bf Area border routers} \emph{"summarize"} distances to networks in its own area and advertises it to other area border routers.
+\item {\bf Backbone routers} run OSPF routing limited to the backbone area.
+\item {\bf Boundary routers} connect ASes to other ASes.
+\end{itemize}
+\end{itemize}
+
+\end{document}
