@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\usepackage[]{algorithm2e}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Routing Protcols}
+\noindent
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item The goal of {\bf routing protocols} is to determine \emph{"good"} paths/routes from a sending host to the receiving host, through a network of routers.
+\item A {\bf path} is a sequence of routers which packets will travel through while going from the source host to the destination host.
+\item Whether or not a path is \emph{good} can be define in different ways, such as having the least cost, is the fasted, or is the least congested.
+\item See an example of graph abstraction from a network on {\bf slide 5-9}.
+\item The \emph{cost} of a path could be defined in different ways depending on preference. The cost could always be 1 (meaning shortest path wins), inversely related to bandwidth, or inversely related to congestion (take speed into account).
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Routing Algorithm Classifications}
+
+\begin{itemize}
+\item Routers can have \emph{global} or \emph{decentralized} information:
+\begin{itemize}
+\item {\bf Global}: All routers have complete a complete topology and the link cost info. This is the kind of information that \emph{"link state" algorithms} provide.
+\item {\bf Decentralized}: Routers only know their physically-connected neighbours and the link cost to those neighbours. It is an iterative process where they exchange info with neighbours. This is the info that \emph{"distance vector" algorithms} provide.
+\end{itemize}
+\item Router information can be \emph{static} or \emph{dynamic}:
+\begin{itemize}
+\item {\bf Static} routes change slowly over time.
+\item {\bf Dynamic} routes change more quickly in response to changes to link costs. They also update periodically.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Link-State Routing Algorithm}
+
+\begin{itemize}
+\item {\bf Dijkstra's algorithm} is commonly used to compute the net topology and link costs of a network.
+\item It is guaranteed to compute the least cost paths from one node to all other nodes.
+\item Using Dijkstra's algorithm, we know that after k iterations, we have the least cost paths to k destinations.
+\item See pseudocode for Dijkstra's algorithm on {\bf slide 5-14}. See examples of it in action on {\bf slide 5-15} to {\bf slide 5-17}.
+\item Dijkstra's algorithm has a complexity of $O(n^2)$, where $n$ is the number of nodes. A more efficient algorithm can reduce the complexity to $O(n\log n)$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Distance Vector Algorithm}
+
+\begin{itemize}
+\item The {\bf Bellman-Ford equation} (dynamic programming) is often used.
+\item The algorithm can be found on {\bf slide 5-20}.
+\item The algorithm essentially uses dynamic programming to compute the least cost path by checking the cost to reach each of the target node's neighbours.
+\item In other words, suppose we are trying to find the shortest path from node $x$ to node $y$. Suppose $y$ has neighbours $v$. The Bellman-Ford algorithm will find the shortest path from $x$ to each $v$, then use that to compute the smallest of $D(x,v) + D(v,y)$. Do note that it will recursively go back by checking the neighbours of $v$ when looking for the shortest path from $x$ to $v$.
+\item An example can be seen on {\bf slide 5-21}.
+\item The key idea of this algorithm is that from time-to-time, each node will send its own distance vector (DV) estimate to its neighbours. When a node receives new DV estimates, it will update its own DV using bellman-ford.
+\item The process is iterative, and each iteration is caused by either \emph{a change in local link costs} or \emph{a DV update message from a neighbour}. Note that each node only notifies neighbours if its DV changes, which causes their neighbours to notify their neighbours if there is change.
+\item See examples of this algorithm in action as well as the related node tables on {\bf slides 5-25} and {\bf slide 5-26}.
+\item If a link cost changes, a node will, when it detects the link cost change, update its own routing info and recalculate its distance vectors. If the DV changes, it will notify its neighbours.
+\item Note that \emph{bad news travels slow} because the routers do not know the next optimal path if one link cost increases. This is known as the {\bf count-to-infinity problem}.
+\item Under normal conditions, the distance vectors will converge to the actual least cost distance.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Comparison of LS and DV algorithms}
+
+\begin{itemize}
+\item Message complexity:
+\begin{itemize}
+\item {\bf LS}: with n nodes and E links, $O(nE)$ messages are sent.
+\item {\bf DV}: Exchanges are only done between neighbours. Thus the convergence time varies.
+\end{itemize}
+\item Speed of convergence:
+\begin{itemize}
+\item {\bf LS}: $O(n^2)$ algorithm requires $O(nE)$ messages.
+\item {\bf EV}: Convergence time varies because there may be routing loops, and the count-to-infinity problem may occur.
+\end{itemize}
+\item Robustness (what happens if router malfunctions):
+\begin{itemize}
+\item {\bf LS}: Node can advertise incorrect link cost. It won't affect other nodes cause nodes only compute their own routing table.
+\item {\bf EV}: DV nodes can advertise incorrect path cost. Each node's table is used by others, so it could cause errors throughout the network.
+\end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
