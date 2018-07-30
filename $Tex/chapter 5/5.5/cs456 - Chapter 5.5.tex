@@ -1,0 +1,80 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\usepackage[]{algorithm2e}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{4}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{The SDN Control Plane}
+\noindent
+\end{center}
+
+\subsection{Software Defined Networking (SDN)}
+
+\begin{itemize}
+\item The Internet network layer has historically been implemented via a distributed, per-router approach. A router contains switching hardware and runs implementations of Internet standard protocols (such as \emph{IP, RIP, IS-IS, OSPF, BGP...}) in the router OS. There are different sections for different network layer functions (such as \emph{firewall, load balancer, NAT boxes...}). In around 2005, there was interest in rethinking the network control plane.
+\item Recall that in a {\bf per-router control plane}, individual routing algorithm components in every router interact with each other in the control plane to compute forwarding tables.
+\item Recall that in a {\bf logically centralized control plane}, a distinct controller interacts with local control agents in routers to compute forwarding tables, and that the controller is usually remotely located. This is how SDN operates.
+\item A logically centralized control plane:
+\begin{itemize}
+\item Provides easier network management. Router misconfigurations are avoided and there is greater flexibility of traffic flows.
+\item Table-based forwarding (OpenFlow) allows "programming" routers. {\bf Centralized programming}, which computes tables centrally and then distribute, is the easier option. {\bf Distributed programming} is the more difficult implementation, which computes tables as a result of a distributed algorithm implemented in every router.
+\item It is an open implementation of the control plane.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{SDN Controller}
+
+\begin{itemize}
+\item The {\bf SDN controller} maintains network state information.
+\item It interacts with \emph{network control applications} "above" using {\bf northbound API}. The API allows network-control applications to read and write network state and flow tables in the state-management layer. Applications can register to receive notification when a state-change occurs.
+\item It interacts with \emph{network switches} "below" using {\bf southbound API}. It is communication between the controller and the controlled devices.
+\item It is implemented as a distributed system for performance, scalability, fault-tolerance, and robustness.
+\item See a diagram of the SDN controller relative to its northbound and southbound apps on {\bf slide 5-63}.
+\item {\bf Data plane switches} are fast and simple switches that implement generalized data-plane forwarding (packet-handling rules) in the hardware. The flow table is computed and installed by the controller, and an API is used for table-based switch control (like OpenFlow). It is a protocol for communicating with the controller (like OpenFlow).
+\item {\bf Control applications} are the \emph{"brains" of control}. They implement control functions using lower-level services and API provided by the SDN controller. They can be provided by a 3rd party, where they're distinct from routing vendors or SDN controllers. In such a case, they are \emph{unbundled}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Components of SDN Controller}
+
+\begin{itemize}
+\item The {\bf interface to the network-control application layer} has network control apps. It provides different types of APIs, such as ones for abstraction or for communication.
+\item The {\bf network-wide state-management layer} contains up-to-date info about the state of networks, links, switches, and services.
+\item The {\bf communication layer} communicates between the SDN controller and network controlled devices.
+\item See an example of interaction between the different planes on {\bf slide 5-66 and 5-67}.
+\item There are challenges set to improve SDN by:
+\begin{itemize}
+\item \emph{Hardening the control plane} so that it's more dependable, reliable, and performance-scalable. It also doesn't hurt to be more secure.
+\item Networks and protocols \emph{meeting mission-specific requirements}, such as making it real-time, ultra-reliable, or ultra-secure in specific situations.
+\item \emph{Scale it} proportional to the Internet (which would actually be pretty hard to do).
+\end{itemize}
+\end{itemize}
+
+\end{document}
