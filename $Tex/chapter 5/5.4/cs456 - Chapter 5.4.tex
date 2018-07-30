@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\usepackage[]{algorithm2e}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{3}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Routing Among the ISPs: BGP}
+\noindent
+\end{center}
+
+\subsection{Internet Inter-AS Routing: BGP}
+
+\begin{itemize}
+\item {\bf Border Gateway Protocol (BGP)} is the inter-domain routing protocol. It is \emph{"the blue that holds the Internet together"}.
+\item BGP provides each AS a means to:
+\begin{itemize}
+\item {\bf External BGP (eBGP)}: to obtain subnet reachability information from neighbouring ASes.
+\item {\bf Internal BGP (iBGP)}: to propagate reachability information to all AS-internal routers.
+\item to determine "good" routes to other networks based on the reachability information and policy.
+\end{itemize}
+\item BGP allows a subnet to advertise its existence to the rest of the Internet.
+\item Note that gateway routers run both eBGP and iBGP protocols.
+\item In a {\bf BGP session}, two BGP routers (peers) would exchange BGP essages over a semi-permanent TCP connection. They advertise paths to different destination network prefixes. Thus, BGP is a \emph{"path vector" protocol}.
+\item When an AS gateway router advertises a path to another AS gateway router, it promises that it will forward datagrams via that path.
+\item The advertised network prefix includes BGP attributes such that the "route" = prefix + attributes.
+\item Two important attributes are:
+\begin{itemize}
+\item {\bf AS-PATH}: a list of ASes which the prefix advertisement passed.
+\item {\bf NEXT-HOP}: the IP address of the router that begins the AS-PATH.
+\end{itemize}
+\item In {\bf policy-based routing}, gateways receiving route advertisements use {\bf import policy} to accept or decline a path (an example policy is to never route through AS Y). AS policies also determine whether to advertise a path to other neighbouring ASes.
+\item See examples of eBGP and iBGP in action on {\bf slide 5-45} and {\bf slide5-46}.
+\item BGP messages can be exchanged between peers over a TCP connection.
+\item BGP messages include:
+\begin{itemize}
+\item {\bf OPEN}: Opens a TCP connection to a remote BGP peer. Also used to authenticate OPEN messages sent by a peer.
+\item {\bf UPDATE}: Advetises a new path or withdraws an old one.
+\item {\bf KEEPALIVE}: Keeps a connection alive when there are no UPDATES. 
+\item {\bf NOTIFICATION}: Reports errors in previous messages. Also used to close a connection.
+
+\clearpage
+
+\end{itemize}
+\item A router may learn about more than one route to the destination AS. In such a case, a route is selected based on:
+\begin{enumerate}
+\item Local preference value attribute: policy decision.
+\item Shortest AS-PATH.
+\item Closest NEXT-HOP router: hot potato routing.
+\item Additional criteria.
+\end{enumerate}
+\item {\bf Hot potato routing} chooses the local gateway that has the least intra-domain cost. It does not take into account the inter-domain cost. See an example of this in action on {\bf slide 5-51}.
+\item If an ISP only wants to route traffic to and from its customer networks and does not want to carry traffic between other ISPs, it can \emph{choose not to advertise} the path to its neighbour. See an example on {\bf slide 5-52 to 5-53}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Why Split Between Intra- and Inter-AS Routing}
+
+\begin{itemize}
+\item {\bf Policies}:
+\begin{itemize}
+\item Inter-AS: Admins want control over how its traffic is routed and who goes through its net.
+\item Intra-AS: Has a single admin, so no policy decisions are needed.
+\end{itemize}
+\item {\bf Scale}: Hierarchial routing saves table size and reduces update traffic.
+\item {\bf Performance}:
+\begin{itemize}
+\item Intra-AS focuses on performance.
+\item Inter-AS allows policies to sometimes take precedence over performance.
+\end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
