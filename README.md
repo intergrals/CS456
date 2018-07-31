@@ -12,5 +12,5 @@ I did not have time to complete notes for chapter 3 before the midterm. The fina
 ##### TODO (set on July 27, 2018):
 - [ ] complete chapter 3
 - [x] complete chapter 4
-- [ ] complete chapter 5
+- [x] complete chapter 5
 - [ ] complete chapter 6
