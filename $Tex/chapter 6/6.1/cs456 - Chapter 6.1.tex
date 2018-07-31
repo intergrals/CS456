@@ -1,0 +1,134 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 6.\arabic{section}}
+\renewcommand{\thesubsection}{6.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{0}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Introduction and Link Layer Services}
+\noindent
+\end{center}
+
+\subsection{Introduction}
+
+\begin{itemize}
+\item Terminology:
+\begin{itemize}
+\item Hosts and routers are {\bf nodes}.
+\item Communication channels that connect adjacent nodes along a communication path are {\bf links}. There are \emph{wired links}, \emph{wireless links}, and \emph{LANs}.
+\item Layer-2 packets are used. Datagrams are encapsulated in a {\bf link-layer frame}, which is transmitted into the link.
+\end{itemize}
+\item Datagrams are transferred by different link protocols over different links. For example, ethernet is transferred over the first link, frame relay on intermediate links, and 802.11 on the last link.
+\item Each link protocol provides different services. They may or may not provide rdt over link.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Link Layer Services}
+
+\begin{itemize}
+\item Framing, link access:
+\begin{itemize}
+\item Encapsulates datagrams into frames. Also adds header and trailer.
+\item Provides channel access if it is on a shared medium.
+\item The source and destination is determined by the \emph{"MAC" address} placed in the frame header, which is different from the IP address.
+\end{itemize}
+\item Reliable deliver between adjacent nodes:
+\begin{itemize}
+\item Already learned (chapter 3).
+\item This is seldom used on low bit-error links (such as \emph{fiber, twisted pair}...).
+\item Wireless links have high error rates.
+\end{itemize}
+\item Flow control:
+\begin{itemize}
+\item Pacing between adjacent sending and receiving nodes.
+\end{itemize}
+\item Error detection:
+\begin{itemize}
+\item Detects errors caused by weakening signals and noise.
+\item Receiver detects presence of these errors, and it signals the sender to retransmit or to drop the frame.
+\end{itemize}
+\item Error correction:
+\begin{itemize}
+\item The receiver identifies and corrects bit errors without asking for retransmission.
+\end{itemize}
+\item Half-duplex and full-duplex
+\begin{itemize}
+\item With half duplex, nodes at both ends of a link can transmit, but not at the same time.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Where is Link Layer Implemented}
+
+\begin{itemize}
+\item The link layer is \emph{implemented in each and every host}.
+\item It is either implemented in an adapter (network interface card) or on a chip. Common examples are on \emph{Ethernet cards, 802.11 cards, Ethernet chipsets...}).
+\item It attaches into a host's system buses.
+\item The link layer is a combination of hardware, software, and firmware.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Adaptors Communicating}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item The sender:
+\begin{itemize}
+\item Encapsulates datagrams into frames.
+\item Adds error checking bits, rdt, flow control...
+\end{itemize}
+
+\vfill\null
+\columnbreak
+
+\item The receiving side:
+\begin{itemize}
+\item Looks for errors, rdt, flow control...
+\item Extracts datagrams and passes them to the upper layer.
+\end{itemize}
+\end{itemize}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
