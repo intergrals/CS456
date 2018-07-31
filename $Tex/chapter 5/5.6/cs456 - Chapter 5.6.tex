@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\usepackage[]{algorithm2e}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{5}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{ICMP: The Internet Control Message Protocol}
+\noindent
+\end{center}
+
+\subsection{Overview}
+
+\begin{itemize}
+\item {\bf Internet Control Message Protocol (ICMP)} is used by hosts and routers to communicate network-level information. They report errors (such as unreadable host, network, port, protocol...).
+\item ICMP is in the \emph{network-layer}, which is above IP.
+\item The messages consist of a \emph{type}, \emph{code}, and the \emph{first 8 bytes of the IP datagram causing an error}.
+\end{itemize}
+
+\subsubsection{Traceroute}
+\begin{itemize}
+\item Recall that a {\bf traceroute} program allows us to trace a route from a host to any other existing host. Traceroute is, in fact, implemented with ICMP messages.
+\item To get the names and addresses of routers between the source and destination, the traceroute in the source sends a series of UDP segments to the destination.
+\item When datagrams in the $n$th set arrives at the $n$th router in the path, the router considers that the datagram's TTL expired. It discards datagrams and sends the source ICMP message, which is (type11, code 0). The message includes the name of the router and the IP address.
+\item When the ICMP message arrives, the source records RTT (round trip time).
+\item The traceroute stops when the UDP segment arrives at the destination host. The destination returns an ICMP \emph{"port unreachable"} message (type 3, code 3), and the source will stop.
+\end{itemize}
+
+\end{document}
