@@ -1,0 +1,48 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 6.\arabic{section}}
+\renewcommand{\thesubsection}{6.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{3}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Data Center Networking}
+\noindent
+\end{center}
+
+\subsection{Data Center Networks}
+
+\begin{itemize}
+\item {\bf Data center networks} has 10s to 100s of thousands of hosts, and they are often closely coupled in close proximity.
+\item e-businesses like Amazon, content-servers like YouTube or Microsoft, and search engines like Google are all examples of data center networks.
+\item Data center networks have challenges in running multiple applications, since each is serving a massive number of clients.
+\item It may also have trouble managing and balancing loads to avoid processing, networking, and data bottlenecks.
+\item A {\bf load balancer}, in the application-layer, directs workload within the data center when external client requests are received. It also returns results to external clients so that data center internals are hidden from the client.
+\item Data center networks have rich interconnection among switches, with hosts typically being stacked in {\bf racks}. The top of each rack \emph{contains a switch}, the {\bf Top of Rack (TOR) switch}, which interconnects hosts in the rack with each other and with other switches in the data center. This means that every host in the rack has a network interface card which connects to a TOR switch.
+\item With so much interconnection, throughput between racks is increased, since multiple routing paths are possible. Reliability is also increased because of this reason.
+\item See {\bf slide 5-60} for a diagram showing the connection between switches and racks in a data center network.
+\end{itemize}
+
+\end{document}
