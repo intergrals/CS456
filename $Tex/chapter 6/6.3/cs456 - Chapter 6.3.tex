@@ -116,29 +116,23 @@
 \subsection{Ethernet Switch}
 
 \begin{itemize}
-\item TODO
+\item The {\bf Ethernet switch} is a link-layer device. It takes an active role in storing and forwarding Ethernet frames.
+\item Incoming frames are examined, and based on their MAC address, the frames are selectively forwarded to one or more outgoing links when they are about to be forwarded on segments. CSMA/CD is used to access segments.
+\item Hosts are unaware that swiches exist.
+\item Switches are self-learning. They do not need to be configured.
+\item Hosts have a dedicated and direct connection to the switch.
+\item Ethernet protocol is used on each incoming link, but there is no collisions since full duplex is used. Thus, each link has its own collision domain.
+\item See an example of simultaneous transmissions over a switch on {\bf slide 5-50}.
+\item Switches contain a switch table. Each entry maps a host's MAC address to the interface required to reach that host \emph{(host MAC address, interface used, time stamp)}. It looks very similar to a routing table.
+\item A switch is \emph{self-learning} in that they learn which host can be reached through which interfaces. Whenever a frame is received, the switch learns the location of the sender and records that information in the switch table.
+\item When a frame is sent through a switch, the switch will index its switch table using the MAC destination address. If an entry is found, then it will check if the destination is on the segment from which the frame arrived. It will drop the frame if it is, and forward the frame on the entry it found if it's not. If the entry could not be found in the switch table, every interface except for the sending one will be flooded. See a more clear representation of this process on {\bf slide 5-53}.
+\item Switches can be connected together, like in the diagram on {\bf slide 5-55}. Switches do self-learning exactly as they do in a single-switch case.
 \end{itemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsubsection{Switches vs. Routers}
+\begin{itemize}
+\item Both routers and switches are store-and-forward applications; however, routers are \emph{network-layer} devices while switches are \emph{link-layer} devices.
+\item Both also have forwarding tables. A router computes tables using routing algorithms. Routers rely on IP addresses. Switches, on the other hand, learn forwarding tables by flooding and self-learning. Switches rely on MAC addresses.
+\end{itemize}
 
 \end{document}
