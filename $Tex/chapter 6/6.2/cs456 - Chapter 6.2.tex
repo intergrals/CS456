@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 6.\arabic{section}}
+\renewcommand{\thesubsection}{6.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{1}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{Multiple Access Protocols}
+\noindent
+\end{center}
+
+\subsection{Multiple Access Links and Protocols}
+
+\begin{itemize}
+\item There are two types of "links":
+\begin{itemize}
+\item {\bf Point-to-point} is used for dial-up access. It is a link between the Ethernet switch and the host.
+\item {\bf Broadcast} is used for old-fashioned Ethernet.
+\end{itemize}
+\item {\bf Multiple access protocols} use a single shared broadcast channel. There may be {\bf interference} when two or more nodes transmit simultaneously. If a node receives two or more signals at the same time, there is {\bf collision}.
+\item It is a distributed algorithm that determines how nodes share a channel (for example, determining when a node can transmit). Communication about channel sharing must be about the channel itself, meaning they can't try to coordinate with out-of-band channels.
+\item See an ideal multiple access protocol example on {\bf slide 5-13}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{MAC Protocols: Taxonomy}
+
+\subsubsection{Three Classes}
+\begin{itemize}
+\item There are three broad classes:
+\begin{itemize}
+\item {\bf Channel partitioning} divides a channel into smaller pieces (time slots, frequency, code...) and allocates a piece to each node for exclusive use.
+\item {\bf Random access} does not divide channels and allows collisions, but it has procedures to "recover" from collisions.
+\item {\bf "Taking turns"} allows nodes to take turns; however, nodes with more to send are permitted to take longer turns.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Channel Partitioning: TDMA}
+\begin{itemize}
+\item {\bf Time Division Multiple Access}
+\item Access to channels are provided in \emph{"rounds"}.
+\item Each station gets a fixed length slot in each round. The $length = packet$ $transmission$ $time$.
+\item Unused slots go to idle.
+\item For example, in a 6-station LAN, if stations 1, 3, and 4 have packets, then slots 2, 5, and 6 are idle ({\bf slide 5-15}).
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Channel Partitioning: FDMA}
+\begin{itemize}
+\item {\bf Frequency Division Multiple Access}
+\item The channel is divided into \emph{frequency bands}.
+\item Each station is assigned a fixed frequency band.
+\item Unised transmission time in frequency bands are left idle.
+\item For example, in a 6-station LAN, if stations 1, 3, and 4 have packets, then frequenc bands 2, 5, and 6 are idle ({\bf slide 5-16}).
+\end{itemize}
+
+\subsubsection{Random Access Protocols}
+\begin{itemize}
+\item When a node has a packet to send, it will be transmitted at the full channel data rate, $R$.
+\item There is no prior coordination between nodes at all.
+\item If two or more nodes are transmitting at the same time, a \emph{collision} occurs.
+\item {\bf Random access MAC protocol} specifies both how to detect collisions and how to recover from them (such as using delayed retransmissions).
+\item Examples of random access MAC protocols are: \emph{slotted ALOHA, ALOHA, CSMA, CSMA/CD, CSMA/CA}.
+\end{itemize}
+
+\subsubsection{Carrier Sense Multiple Access (CSMA)}
+\begin{itemize}
+\item CSMA listens before transmission. If it senses that the \emph{channel is idle}, then the entire frame is transmitted. If the \emph{channel is busy}, then the transmission is deferred to a later time.
+\item Note that collisions can still occur if two nodes do not hear each other's transmission. In such a case, the entire packet transission time is wasted.
+\end{itemize}
+
+\subsubsection{CSMA/CD (Collision Detection}
+\begin{itemize}
+\item The carrier sensing and deferral work exactly as in CSMA.
+\item Collisions are detected within a shrot time, and colliding transmissions are aborted so the channel isn't wasted as much.
+\item Collision detection works differently in wired and wireless LANs:
+\begin{itemize}
+\item It is easy in wired LANs. The signal strength is measured and compared to the transmitted and received signals.
+\item It is much harder in wireless LANS. Received signal strength is overwhelmed by local transmission strength.
+\end{itemize}
+\item See CSMA/CD algorithm on {\bf slide 5-22}.
+\item CSMA/CD has an efficiency of: $\frac{1}{1+5t_{prop}/t_{trans}}$. $t_{prop}$ is the max prop delay between 2 nodes in LAN, and $t_{trans}$ is the time to transmit max-size frame.
+\end{itemize}
+
+\clearpage
+
+\subsubsection{CSMA/CA (Collision Avoidance)}
+\begin{itemize}
+\item This protocol method tries to avoid collisions that occur when two or more nodes transmit at the same time.
+\item Collision detection dos not exist in 802.11 because it is difficult to sense collisions when transmitting due to weak received signals that fade (since collision sensing is received).
+\end{itemize}
+
+\subsubsection{"Taking Turns"}
+\begin{itemize}
+\item The taking turns protocol has two variations.
+\item In a {\bf polling protocol}, a designated master node "invites" slave nodes to transmit turn-by-turn.
+\begin{itemize}
+\item This is usually used with "dumb" slave devices. They are told the max number of frames they are permitted to transmit.
+\item The master node detects that the slaves are done by a lack of activity. They will then cycle to the next node.
+\item There are concerns with \emph{polling overhead}, \emph{latency}, and \emph{a single point of failure at the master node}.
+\end{itemize}
+\item Another {\bf token passing} protocol has no master node, but rather tokens being exchanged between nodes.
+\begin{itemize}
+\item Tokens are always exchanged between nodes in a fixed order.
+\item A node holds a token while transmitting up to a maximum number of frames or until it has nothing left to transmit. Then it will pass the token to the next node.
+\item It has the similar concerns as polling: \emph{token overhead}, \emph{latency}, and \emph{a single point of failure at the node holding a token}.
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Comparison}
+\begin{itemize}
+\item {\bf Channel partitioning MAC protocols} share channels efficiently and fairly, even at high loads, but it is not very efficient at low load since there is delay in channel access. $I/N$ bandwidth is allocated even if there is only 1 active node. There is \emph{Time Division} and \emph{Frequency Division}.
+\item {\bf Random access MAC protocols} are efficient at low load. A single node can fully utilize a channel, but at high load, there is a high risk of collision overhead. \emph{CSMA/CD} is used in Ethernet while \emph{CSMA/CA} is used in 802.11.
+\item The {\bf "taking turns" protocol} looks for the best of both worlds. It could use \emph{polling} from a central site, or \emph{token passing}. Bluetooth, FDDI, and token rings use this protocol method.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
