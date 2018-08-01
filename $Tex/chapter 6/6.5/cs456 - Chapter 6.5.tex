@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 6.\arabic{section}}
+\renewcommand{\thesubsection}{6.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{4}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{A Day in the Life of a Web Request}
+\noindent
+\end{center}
+
+\subsection{Synthesis}
+
+\begin{itemize}
+\item The journey down protocol stack is complete.
+\item The application, transport, network, and link layer have all been discussed thoroughly.
+\item Now we put it all together.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Connecting to the Internet}
+
+\begin{itemize}
+\item The connecting laptop needs to get its own IP address, the address of the first-hop router, and the address of the DNS server. DHCP is used in this case.
+\item DHCP requests are encapsulated in UDP, IP, and in 802.3 Ethernet.
+\item Ethernet frames are broadcast on LAN, and received at the router running the DHCP server.
+\item Ethernet demuxed to IP demuxed, and UDP demuxed to DHCP.
+\item The DHCP server makes a DHCP ACK containing the client's IP address, the IP address of the first-hop router for the client, and the name and IP address of the DNS server. This information is encapsulated at the DHCP server, and the frame is forwarded through LAN (switch learning means it already has link info). It is then demultiplexed at the client.
+\item The DHCP client will receive a DHCP ACK reply.
+\item The client now has and IP address, knows the name and address of the DNS server, and the IP address of its first-hop router.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Before DNS and HTTP}
+
+\begin{itemize}
+\item Before sending an HTTP request, an IP address of the target domain is needed.
+\item A DNS query is created and encapsulated in UDP/IP/Ethernet. The frame should now be sent to the router, but the router interface's MAC address is needed.
+\item An ARP query will be broadcast, and once received by the router, it will reply wit an ARP reply to give the MAC address of the router interface.
+\item The client now knows the MAC address of the first hop router, so it can send the frame containing the DNS query.
+\item An IP datagram containing the DNS query will be forwarded via LAN switch from the client to the first-hop router.
+\item The IP datagram is then forwarded from the local network to the ISP network, and then to the DNS server.
+\item The DNS server then relies to the client with its IP address.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{TCP Connection Carrying HTTP}
+
+\begin{itemize}
+\item To send an HTTP request, the client must first open a TCP socket to the web server.
+\item The TCP SYN segment (in a 3-way handshake) is routed to the web server. The server responds to the SYN with a SYNACK and the TCP connection is established.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{HTTP Request/Reply}
+
+\begin{itemize}
+\item HTTP requests are sent into the TCP socket.
+\item IP datagrams containing HTTP requests are routed to the web server.
+\item The web server responds with an HTTP reply (which contains the web page).
+\item The IP datagram containing HTTP reply is reouted back to the client.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
