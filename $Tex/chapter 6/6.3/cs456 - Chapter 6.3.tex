@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{times}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bookmark}
+
+\bookmarksetup{
+  numbered, 
+  open,
+}
+
+\setlist{itemsep=2pt}
+\renewcommand{\thesection}{Chapter 6.\arabic{section}}
+\renewcommand{\thesubsection}{6.\arabic{section}.\arabic{subsection}}
+\setcounter{section}{2}
+
+\begin{document}
+
+\noindent
+{CS 456 \hfill Hao Pan}\\
+{Salahuddin, Mohammad}\\
+{Spring 2018}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\section{LANs}
+\noindent
+\end{center}
+
+\subsection{MAC Addresses and ARP}
+
+\begin{itemize}
+\item A {\bf MAC address} is a 32-bit IP address.
+\item The MAC address is a network-layer address (layer 3) used for forwarding.
+\item Formally, it functions to locally get frames from one interface to another interface that is physically connected (same network or in IP-addressing state).
+\item 48-bit MAC addresses, which are burned into the Network Interface Controller ROM (NIC ROM), are also sometimes used for the software settable.
+\item An example of a MAC address is \emph{1A-2F-BB-76-09-AD}. The numbers are in hexadecimal, meaning they each represent 4 bits.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{LAN Address and ARP}
+
+\begin{itemize}
+\item Each adapter on LAN has a unique LAN address.
+\item MAC address allocation is administered by IEEE.
+\item Manufacturers buy a portion of available MAC address space in order to assure uniqueness.
+\item As an analogy, compare a MAC address to a Social Security Number - and compare an IP address to a postal code.
+\item A MAC address is portable since the LAN card can move from one LAN to another. IP addresses are not portable, though, since they depend on the IP subnet that the node is attached to.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Address Resolution Protocol (ARP)}
+
+\begin{itemize}
+\item Every IP node (host, router...) on LAN has an ARP table.
+\item The {\bf ARP table} contain IP/MAC address mappings for some LAN nodes in the form of: \emph{<IP address; MAC address; TTL>}. The \emph{Time to Live (TTL)} represents the time after which the address mapping will be forgotten. It is typically set to 20 minutes.
+\item Over the same LAN, if one host wants to send a datagram to another:
+\begin{itemize}
+\item If it doesn't have the target's MAC address in its ARP table, it will broadcast an ARP query packet containing the target's IP address.
+\item The target will, after receiving the ARP packet, reply to the sender with its own MAC address.
+\item A cache will save the IP-to-MAC address mapping until it times out.
+\end{itemize}
+\item Over another LAN:
+\begin{itemize}
+\item Note that the sender will have the IP address of its first hop router, and it will know the router's MAC address (because of OSPF?).
+\item It will create an IP datagram marking itself as the source and the target as the destination.
+\item It will create a link-layer frame with the router's MAC address as the destination. The frame contains the datagram.
+\item Once the router receives the frame, the datagram is removed and passed up to IP.
+\item The router will create a link-layer frame with the destination's MAC address as the destination. The frame contains the datagram.
+\item The frame will be forwarded to the destination MAC address after that.
+\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ethernet}
+
+\begin{itemize}
+\item {\bf Ethernet} is the dominant wired LAN technology.
+\item Ethernet is cheap (\$20 for NIC), the first widely used LAN technology, simpler and cheaper than token LANs and ATM, and kept up with the speed race (10Mbps - 10Gbps).
+\item Two Ethernet physical topologys are widely used:
+\begin{itemize}
+\item {\bf Bus} was popular through the mid 90s. All nodes are in the same collision domain, meaning they can all collide with each other.
+\item {\bf Star} is widely used today. An active switch is placed in the center of the topology, and each "spoke" runs on a separate Ethernet protocol which connects to the switch. Thus, nodes will not collide with one another.
+\end{itemize}
+\item Ethernet is {\bf connectionless}. There is no handshaking between the sending and receiving NICs.
+\item It is \emph{unreliable}. The receiving NIC doesn't send acks nor nacks back to the sending NIC. Thus, data in dropped frames can only be recovered if the sender uses a higher layer rdt, like TCP. Otherwise, the dropped data is lost.
+\item Ethernet's MAC protocol uses unslotted \emph{CSMA/CD with binary backoff}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ethernet Frame Structure}
+
+\begin{itemize}
+\item The sending adapter encapsulates an IP datagram (or any other network layer protocol packet) in an \emph{Ethernet frame}.
+\item If the adapter receives a frame with matching destination address or with a broadcast address (such as ARP packets), it will pass the data in the frame to the network layer protocol. Otherwise, the frame is discarded.
+\item The {\bf type} indicates higher layer protocol. It's mostly IP, but others are also possible.
+\item A \emph{cyclic redundancy check (CRC)} is done at the receiver. The frame is dropped if an error is detected.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ethernet Standards}
+
+\begin{itemize}
+\item Many different Ethernet standards exist.
+\item A common MAC protocol and frame format should be used for consistency.
+\item Different speeds can be used.
+\item Different physical layer media exist, such as \emph{fiber} and \emph{cable}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ethernet Switch}
+
+\begin{itemize}
+\item TODO
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
